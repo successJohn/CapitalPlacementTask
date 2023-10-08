@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CapitalPlacementTask.Domain.Entities
+namespace CapitalPlacementTask.Application.DTOs
 {
-    public class ProgramDetail: BaseEntity<Guid>
+    public class CreateProgramDetailDTO
     {
+      
         [Required]
         public string ProgramTitle { get; set; }
 
@@ -17,7 +18,7 @@ namespace CapitalPlacementTask.Domain.Entities
 
         [Required]
         public string ProgramDescription { get; set; }
-        public string RequiredSkills { get; set; }
+        public string Skills { get; set; }
         public string Benefits { get; set; }
         public string Criteria { get; set; }
 
