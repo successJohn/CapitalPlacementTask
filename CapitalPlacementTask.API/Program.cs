@@ -38,7 +38,7 @@ namespace CapitalPlacementTask.API
 
 
             app.MapControllers();
-           // app.AddGlobalErrorHandler();
+           app.AddGlobalErrorHandler();
             app.Run();
         }
     }

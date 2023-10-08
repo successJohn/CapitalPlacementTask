@@ -12,6 +12,6 @@ namespace CapitalPlacementTask.Application.Interfaces
     {
         
         Task<BaseResponse<ApplicationFormDTO>> GetApplicationForm(Guid id);
-        Task<BaseResponse<bool>> UpdateApplicationForm(ApplicationFormDTO model, Guid id);
+        Task<BaseResponse<ApplicationFormDTO>> UpdateApplicationForm(ApplicationFormDTO model, Guid id);
     }
 }

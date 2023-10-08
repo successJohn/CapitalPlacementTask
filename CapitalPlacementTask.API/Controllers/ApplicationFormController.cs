@@ -29,7 +29,7 @@ namespace CapitalPlacementTask.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(BaseResponse<bool>), 200)]
+        [ProducesResponseType(typeof(BaseResponse<ApplicationFormDTO>), 200)]
         public async Task<IActionResult> UpdateApplicationForm(Guid id, ApplicationFormDTO model)
         {
             return ReturnResponse(await _applicationFormService.UpdateApplicationForm(model, id));

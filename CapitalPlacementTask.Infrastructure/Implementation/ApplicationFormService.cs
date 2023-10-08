@@ -55,15 +55,15 @@ namespace CapitalPlacementTask.Infrastructure.Implementation
         }
 
         
-        public async Task<BaseResponse<bool>> UpdateApplicationForm(ApplicationFormDTO model, Guid id)
+        public async Task<BaseResponse<ApplicationFormDTO>> UpdateApplicationForm(ApplicationFormDTO model, Guid id)
         {
-            var resultModel = new BaseResponse<bool>();
+            var resultModel = new BaseResponse<ApplicationFormDTO>();
 
             var applicationForm = await _applicationFormContainer.ReadItemAsync<ApplicationForm>(id.ToString(), new PartitionKey(id.ToString()));
 
             if (applicationForm.Resource is null)
             {
-                return new BaseResponse<bool>("application form doesn't exists");
+                return new BaseResponse<ApplicationFormDTO>("application form doesn't exists");
                
             }
             var updatedForm = _mapper.Map<ApplicationForm>(model);
@@ -77,7 +77,7 @@ namespace CapitalPlacementTask.Infrastructure.Implementation
             {
                 await Console.Out.WriteLineAsync(ex.Message);
             }
-            return new BaseResponse<bool>( "Form update successful");
+            return new BaseResponse<ApplicationFormDTO>(model, "Form update successful");
 
         }
         
