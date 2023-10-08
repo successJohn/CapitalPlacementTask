@@ -96,7 +96,9 @@ namespace CapitalPlacementTask.Infrastructure.Implementation
                 MinQualification = model.MinQualification,
             };
 
-            await _programDetailContainer.ReplaceItemAsync(programDetail.Resource, programDetail.Resource.Id.ToString());
+            updateForm.Id = programDetail.Resource.Id;
+
+            await _programDetailContainer.ReplaceItemAsync(updateForm, id.ToString());
 
             return new BaseResponse<ProgramDetailDTO>(updateForm, "Form update successful");
         }

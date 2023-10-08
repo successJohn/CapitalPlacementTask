@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace CapitalPlacementTask.Application.DTOs
 {
-    public class ProgramDetailDTO
+    public class PreviewDTO
     {
-        //public Guid Id { get; set; }
+        public Guid Id { get; set; }
         public string ProgramTitle { get; set; }
 
         public string Summary { get; set; }
@@ -21,7 +21,7 @@ namespace CapitalPlacementTask.Application.DTOs
         public string Benefits { get; set; }
         public string Criteria { get; set; }
 
-        [Required]
+       
         public ProgramType ProgramType { get; set; }
 
         public DateTime ProgramStart { get; set; }
@@ -37,14 +37,14 @@ namespace CapitalPlacementTask.Application.DTOs
 
         public Qualification MinQualification { get; set; }
 
-        public DateTime CreatedOn { get; set; } 
+        public DateTime CreatedOn { get; set; }
 
 
-        public static implicit operator ProgramDetailDTO(ProgramDetail model)
+        public static implicit operator PreviewDTO(ProgramDetail model)
         {
-            return model is null ? null : new ProgramDetailDTO
+            return model is null ? null : new PreviewDTO
             {
-               
+                Id = model.Id,
                 ProgramTitle = model.ProgramTitle,
                 Summary = model.Summary,
                 ProgramDescription = model.ProgramDescription,
@@ -56,7 +56,7 @@ namespace CapitalPlacementTask.Application.DTOs
                 ApplicationOpen = model.ApplicationOpen,
                 Duration = model.Duration,
                 ProgramLocation = model.ProgramLocation,
-                MinQualification= model.MinQualification,
+                MinQualification = model.MinQualification,
                 CreatedOn = model.CreatedOn,
             };
         }

@@ -1,3 +1,4 @@
+using CapitalPlacementTask.API.Extensions;
 using CapitalPlacementTask.Infrastructure;
 using Microsoft.Azure.Cosmos;
 
@@ -17,24 +18,8 @@ namespace CapitalPlacementTask.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             // Add services to the container.
-            builder.Services.AddSingleton((provider) =>
-            {
-                var endpointUri = configuration["CosmosDbSettings:EndpointUri"];
-                var primaryKey = configuration["CosmosDbSettings:PrimaryKey"];
-                var databaseName = configuration["CosmosDbSettings:DatabaseName"];
-
-                var cosmosClientOptions = new CosmosClientOptions
-                {
-                    ApplicationName = databaseName,
-                    ConnectionMode = ConnectionMode.Direct,
-
-                };
-
-                var cosmosClient = new CosmosClient(endpointUri, primaryKey, cosmosClientOptions);
-
-
-                return cosmosClient;
-            });
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.ConfigureCosmos(builder.Configuration);
             builder.Services.AddInfrastructureServices(builder.Configuration);
           
 
@@ -53,7 +38,7 @@ namespace CapitalPlacementTask.API
 
 
             app.MapControllers();
-
+           // app.AddGlobalErrorHandler();
             app.Run();
         }
     }

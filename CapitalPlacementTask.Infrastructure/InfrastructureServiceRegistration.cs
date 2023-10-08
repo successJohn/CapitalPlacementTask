@@ -15,6 +15,8 @@ namespace CapitalPlacementTask.Infrastructure
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration config)
         {     
             services.AddScoped<IProgramDetailService, ProgramDetailService>();
+            services.AddScoped<IApplicationService, ApplicationFormService>();
+            services.AddScoped<IPreviewService, PreviewService>();
             return services;
         }
     }

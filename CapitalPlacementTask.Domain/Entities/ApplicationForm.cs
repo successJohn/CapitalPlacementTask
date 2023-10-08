@@ -13,7 +13,7 @@ namespace CapitalPlacementTask.Domain.Entities
         public Guid ProgramDetailsId { get; set; }
        
         public PersonalInformation PersonalInformation { get; set; }       
-        public Profile? Profile { get; set; }
+        public Profile Profile { get; set; }
     }
 
     public class PersonalInformation
@@ -26,9 +26,8 @@ namespace CapitalPlacementTask.Domain.Entities
         public string CurrentResidence { get; set; }
         public string IDNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
-
-        public string Gender { get; set; }
-        public List<Question>? Question { get; set; }
+        public Gender Gender { get; set; }
+        public List<Question> Question { get; set; }
     }
 
     public class Education
@@ -42,19 +41,18 @@ namespace CapitalPlacementTask.Domain.Entities
 
         public DateTime StartDate { get; set; }
 
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public bool CurrentlyStudyingThere { get; set; }
        
-
 
     }
     public class Profile
     {
 
-        public List<WorkExperience>? workExperiences { get; set; }
+        public List<WorkExperience> workExperiences { get; set; }
 
-        public List<Education>? Education { get; set; }
+        public List<Education> Education { get; set; }
     }
     public class WorkExperience
     {
@@ -71,17 +69,7 @@ namespace CapitalPlacementTask.Domain.Entities
         public bool CurrentlyWorkingThere { get; set; }
 
     }
-
-    public class Question
-    {
-        public string Text { get; set; }
-        public QuestionType Type { get; set; }
-        public Choices Choices { get; set; }
-        public DateTime? DateValue { get; set; }
-        public double? NumberValue { get; set; }
-    }
-
-
+  
     public class Choices
     {
         public List<string> Options { get; set; }
@@ -93,5 +81,48 @@ namespace CapitalPlacementTask.Domain.Entities
         Date,
         Number,
         paragraph
+    }
+
+    public class Question
+    {
+       
+        public QuestionType Type { get; set; }
+        public MultipleChoice MultipleChoice { get; set; }
+
+        public Paragraph Paragraph { get; set; }
+
+        public Dropdown Dropdown { get; set; }
+
+        public YesOrNo YesOrNo { get; set; }
+
+    }
+
+
+    public class MultipleChoice
+    {
+        public string Question { get; set; }
+        public string Choices { get; set; }
+        public bool EnableOthers { get; set; }
+        public string MaxChoiceAllowed { get; set; }
+    }
+
+    public class Paragraph
+    {
+        public string Question { get; set; }
+    }
+
+
+    public class Dropdown
+    {
+        public string Question { get; set; }
+        public string Choices { get; set; }
+        public bool EnableOthers { get; set; }
+    }
+
+
+    public class YesOrNo
+    {
+        public string Question { get; set; }
+        public bool DisqualifyCandidate { get; set; }
     }
 }

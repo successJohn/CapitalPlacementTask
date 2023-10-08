@@ -1,5 +1,7 @@
 ﻿using CapitalPlacementTask.Application.DTOs;
+using CapitalPlacementTask.Application.DTOs.FormDTOs;
 using CapitalPlacementTask.Application.Interfaces;
+using CapitalPlacementTask.Application.Utilities;
 using CapitalPlacementTask.Infrastructure.Implementation;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +20,7 @@ namespace CapitalPlacementTask.API.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(BaseResponse<bool>), 200)]
         public async Task<IActionResult> CreateForm(CreateProgramDetailDTO model)
         {
 
@@ -26,13 +29,15 @@ namespace CapitalPlacementTask.API.Controllers
         }
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetForm(Guid Id)
+        [ProducesResponseType(typeof(BaseResponse<ProgramDetailDTO>), 200)]
+        public async Task<IActionResult> GetProgramDetail(Guid Id)
         {
             return ReturnResponse(await _programDetailService.GetProgramDetail(Id));
 
         }
 
         [HttpPut("{programId}")]
+        [ProducesResponseType(typeof(BaseResponse<bool>), 200)]
         public async Task<IActionResult> UpdateApplicationForm(Guid programId, ProgramDetailDTO model)
         {
 
